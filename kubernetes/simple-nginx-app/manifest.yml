@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: simple-nginx-app
+  name: simple-nginx-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-nginx-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: simple-nginx-app
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: simple-nginx-app
+  name: simple-nginx-app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: simple-nginx-app
+status:
+  loadBalancer: {}
