@@ -10,6 +10,7 @@ module "cloud_config" {
 }
 
 module "proxmox_vm" {
+  depends_on = [ module.cloud_config ]
   for_each = toset(["k3s01","k3s02","k3s03","k3s04"])
   source = "./modules/create-vm"
   vm_config = var.vm_config[each.value]
