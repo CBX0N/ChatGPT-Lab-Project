@@ -6,7 +6,6 @@ metadata:
   namespace: grafana
 spec:
   storageClassName: longhorn
-  volumeName: grafana-pv
   resources:
     requests:
       storage: 2Gi
