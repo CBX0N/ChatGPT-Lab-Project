@@ -1,0 +1,20 @@
+name: Pull Config
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+    configure-runner:
+        name: Configure Runner
+        runs-on: self-hosted
+        steps:
+            - uses: actions/checkout@v4
+            - run: |
+                echo "[defaults]" > ~/.ansible.cfg
+                echo "vault_id_match = true" >> ~/.ansible.cfg
+                echo "vault_identity_list = cbxon@~/.ansible/cbxon-vault.pass" >> ~/.ansible.cfg
+            - run: |
+                echo "${{ secrets.ANSIBLE_VAULT }}" > ~/.ansible/cbxon-vault.pass
+            - run: |
+                git config --global user.email "runner@cbxon.co.uk"
+                git config --global user.name "Actions Runner"
