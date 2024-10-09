@@ -15,6 +15,7 @@
     - configure-k3s.yml
     - capture-k3s-token.yml
     - install-longhorn.yml
+    - fetch-kube-config.yml
   when: "'K3S_SERVER' in group_names"
 
 - name: Configure K3s agent

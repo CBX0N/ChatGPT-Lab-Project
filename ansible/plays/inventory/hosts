@@ -9,3 +9,4 @@ k3s01.internal.cbxon.co.uk ansible_host=192.168.0.211
 k3s02.internal.cbxon.co.uk ansible_host=192.168.0.212
 k3s03.internal.cbxon.co.uk ansible_host=192.168.0.213
 k3s04.internal.cbxon.co.uk ansible_host=192.168.0.214
+k3s05.internal.cbxon.co.uk ansible_host=192.168.0.215

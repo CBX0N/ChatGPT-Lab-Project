@@ -39,4 +39,14 @@ vm_config = {
     disk_gb = 40
     ipconfig = "ip=192.168.0.214/24,gw=192.168.0.1"
   },
+  "k3s05" = {
+    name = "k3s05"
+    vmid = 215
+    memory = 4096
+    cores = 2
+    use_cloud_config = true
+    clone = "ubuntu-noble-template"
+    disk_gb = 40
+    ipconfig = "ip=192.168.0.215/24,gw=192.168.0.1"
+  },
 }
