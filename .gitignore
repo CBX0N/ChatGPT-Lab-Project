@@ -1,5 +1,4 @@
 .terraform
 .terraform.lock.hcl
 *.tfstate*
-
-deploy-infrastructure/modules/create-cloud-config/files
+.vscode
