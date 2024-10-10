@@ -1,4 +1,25 @@
 ---
+status: {}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: grafana
+spec: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc
+  namespace: grafana
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,9 +67,9 @@ spec:
               port: 3000
             timeoutSeconds: 1
           resources:
-            requests: {}
-              # cpu: 250m
-              # memory: 750Mi
+            requests:
+              cpu: 250m
+              memory: 750Mi
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: grafana-pv
@@ -56,3 +77,19 @@ spec:
         - name: grafana-pv
           persistentVolumeClaim:
             claimName: grafana-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: grafana
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: http-grafana
+  selector:
+    app: grafana
+  sessionAffinity: None
+  type: LoadBalancer

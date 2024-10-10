@@ -1,4 +1,4 @@
-name: Pull Config
+name: Push Config
 on:
     push:
     workflow_dispatch:
