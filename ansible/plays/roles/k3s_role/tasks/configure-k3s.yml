@@ -3,6 +3,7 @@
   ansible.builtin.template:
     dest: /etc/systemd/system/k3s.service
     src: k3s.service.j2
+  run_once: true
 
 - name: Enable & Start K3s service
   ansible.builtin.systemd_service:
