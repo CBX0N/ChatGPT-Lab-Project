@@ -2,7 +2,8 @@
 - name: Create namespaces
   ansible.builtin.shell:
     cmd: k3s kubectl create ns {{ namespace }}
-  loop_var: namespace
+  loop_control:
+    loop_var: namespace
   loop:
     - terraform
     - argocd
