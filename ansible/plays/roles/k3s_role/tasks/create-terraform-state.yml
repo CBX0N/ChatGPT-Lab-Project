@@ -1,4 +1,0 @@
----
-- name: Apply Terraform ns manifest file
-  ansible.builtin.shell:
-    cmd: k3s kubectl create ns terraform
