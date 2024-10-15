@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/CBX0N/ChatGPT-Lab-Project.git
+    targetRevision: cluster-monitoring
+    path: applications/monitoring/grafana
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/CBX0N/ChatGPT-Lab-Project.git
+    targetRevision: cluster-monitoring
+    path: applications/monitoring/prometheus
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-state-metrics
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kubernetes/kube-state-metrics.git
+    targetRevision: main
+    path: examples/standard
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring

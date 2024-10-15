@@ -1,6 +1,7 @@
 name: Deploy Infrastructure
 on:
     push:
+        branches: [main]
     workflow_dispatch: 
 
 jobs:
@@ -9,14 +10,16 @@ jobs:
         runs-on: self-hosted
         steps:
             - run: |
+                echo "Host *" > ~/.ssh/config
+                echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+                echo "Host github.com" >> ~/.ssh/config
+                echo "  User git" >> ~/.ssh/config
                 echo "[defaults]" > ~/.ansible.cfg
                 echo "vault_id_match = true" >> ~/.ansible.cfg
                 echo "vault_identity_list = cbxon@~/.ansible/cbxon-vault.pass" >> ~/.ansible.cfg
-            - run: |
-                echo "${{ secrets.ANSIBLE_VAULT }}" > ~/.ansible/cbxon-vault.pass
-            - run: |
                 git config --global user.email "runner@cbxon.co.uk"
                 git config --global user.name "Actions Runner"
+                echo "${{ secrets.ANSIBLE_VAULT }}" > ~/.ansible/cbxon-vault.pass
 
     terraform-plan:
         name: Terraform Plan
@@ -47,7 +50,6 @@ jobs:
             - if: env.tfplan == 2
               run: |
                 terraform apply --auto-approve
-                git add ./modules/create-cloud-config/files/; git commit -m "Github Actions - Adding Cloud Config User Data"; git push
 
     ansible-run:
         name: Ansible Run

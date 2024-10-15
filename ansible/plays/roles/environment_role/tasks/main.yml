@@ -1,4 +1,11 @@
 ---
+- name: Installing Packages
+  ansible.builtin.apt:
+    pkg:
+      - qemu-guest-agent
+    state: present
+    update-cache: true
+
 - name: Setting Hostname
   ansible.builtin.hostname:
     name: "{{ inventory_hostname }}"
