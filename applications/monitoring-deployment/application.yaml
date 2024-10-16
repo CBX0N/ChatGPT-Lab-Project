@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: Monitoring
+  name: monitoring
 spec:
   project: default
   destination:
@@ -15,19 +15,3 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: kube-state-metrics
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/kubernetes/kube-state-metrics.git
-    targetRevision: main
-    path: examples/standard
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
