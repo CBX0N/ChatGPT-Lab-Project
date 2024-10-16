@@ -1,33 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
-  namespace: argocd
+  name: Monitoring
 spec:
   project: default
+  destination:
+    name: ''
+    namespace: monitoring
+    server: https://kubernetes.default.svc
   source:
+    path: applications/monitoring-deployment
     repoURL: https://github.com/CBX0N/ChatGPT-Lab-Project.git
     targetRevision: cluster-monitoring
-    path: applications/monitoring/grafana
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
-
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: prometheus
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/CBX0N/ChatGPT-Lab-Project.git
-    targetRevision: cluster-monitoring
-    path: applications/monitoring/prometheus
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
+    helm:
+      valueFiles:
+        - values.yaml
 
 ---
 apiVersion: argoproj.io/v1alpha1
