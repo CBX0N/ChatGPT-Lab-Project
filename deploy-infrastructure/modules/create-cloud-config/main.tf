@@ -1,5 +1,5 @@
 resource "local_file" "cloud_init_config_files" {
-  filename = "${path.module}/files/user_data_${var.cloud_config.name}.yml"
+  filename = "${path.module}/files/user_data_${var.cloud_config.name}.yaml"
   content  = templatefile(var.cloud_config.templatefile, { })
   connection {
     type     = "ssh"
@@ -9,7 +9,7 @@ resource "local_file" "cloud_init_config_files" {
   }
 
   provisioner "file" {
-    destination = "/var/lib/vz/snippets/user_data_${var.cloud_config.name}.yml"
+    destination = "/var/lib/vz/snippets/user_data_${var.cloud_config.name}.yaml"
     content     = templatefile(var.cloud_config.templatefile, { })
   }
 }

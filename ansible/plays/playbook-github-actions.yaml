@@ -1,9 +1,9 @@
 ---
-- name: Configure K3s Cluster
+- name: Configure Github Actions runners
   hosts: K3S
   become: true
   remote_user: ansible
   gather_facts: false
   roles:
     - environment_role
-    - k3s_role
+    - github_actions_role

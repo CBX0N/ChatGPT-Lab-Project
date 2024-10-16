@@ -1,0 +1,12 @@
+---
+- name: Configure runner
+  ansible.builtin.shell:
+    cmd: "./config.sh --url {{ actions_repo_url }} --token {{ actions_join_token }}"
+
+- name: Setup Service
+  ansible.builtin.shell:
+    cmd: "./svc.sh install"
+
+- name: Start Service
+  ansible.builtin.shell:
+    cmd: "./svc.sh start"
