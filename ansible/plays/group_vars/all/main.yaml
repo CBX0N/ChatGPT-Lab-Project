@@ -17,6 +17,6 @@ ansible_become_password: !vault |
 
 create_ssh_private_key: false
 ssh_authorized_keys:
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIES3MWtrYdJGdRLvp6oKl3SWHYGGcR725ZaZmu2+kcWx
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDMJvrddIRBp6UWEim5D6jCPegLHwh+doe7c744GA7v/
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjX0kDFSxu41RfqJOytpKePct4PrWpwvKkjbEMvhbTV
+  - cbxon.pub
+  - github.pub
+  - pve.pub

@@ -14,11 +14,10 @@
   ansible.posix.authorized_key:
     state: present
     user: "{{ ansible_user }}"
-    key: "{{ item }}"
+    key: "{{ lookup('file', './files/public_keys/{{ item }}') }}"
   loop:
-    # - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIES3MWtrYdJGdRLvp6oKl3SWHYGGcR725ZaZmu2+kcWx
-    # - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDMJvrddIRBp6UWEim5D6jCPegLHwh+doe7c744GA7v/
-    - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjX0kDFSxu41RfqJOytpKePct4PrWpwvKkjbEMvhbTV
+    - "{{ ssh_authorized_keys }}"
+
 - name: Create SSH Private Key
   ansible.builtin.copy:
     dest: ~/.ssh/id_ed25519
