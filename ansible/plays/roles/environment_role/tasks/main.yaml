@@ -21,5 +21,6 @@
   ansible.builtin.copy:
     dest: "/home/{{ ansible_user }}/.ssh/id_ed25519"
     content: "{{ ssh_private_key }}"
+    owner: '{{ ansible_user }}'
     mode: "0600"
   when: create_ssh_private_key
