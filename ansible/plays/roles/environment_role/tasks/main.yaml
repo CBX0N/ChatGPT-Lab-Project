@@ -16,7 +16,7 @@
     user: '{{ ansible_user }}'
     key: '{{ item }}'
   withFile:
-    - "files/public_keys/{{ ssh_authorized_keys }}"
+    - "{{ ssh_authorized_keys }}"
 
 - name: Create SSH Private Key
   ansible.builtin.copy:

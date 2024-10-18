@@ -17,6 +17,6 @@ ansible_become_password: !vault |
 
 create_ssh_private_key: false
 ssh_authorized_keys:
-  - cbxon.pub
-  - github.pub
-  - pve.pub
+  - files/public_keys/cbxon.pub
+  - files/public_keys/github.pub
+  - files/public_keys/pve.pub
