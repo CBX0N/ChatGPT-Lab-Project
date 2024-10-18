@@ -37,7 +37,7 @@ ssh_private_key: !vault |
           62656364616364653966353165633333333832386433633637333232646562373137303531333039
           3638
 
-ssh_authorized_keys:
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIES3MWtrYdJGdRLvp6oKl3SWHYGGcR725ZaZmu2+kcWx cbxon@lap
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjX0kDFSxu41RfqJOytpKePct4PrWpwvKkjbEMvhbTV root@pve
+# ssh_authorized_keys:
+#   - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIES3MWtrYdJGdRLvp6oKl3SWHYGGcR725ZaZmu2+kcWx cbxon@lap
+#   - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjX0kDFSxu41RfqJOytpKePct4PrWpwvKkjbEMvhbTV root@pve
 
