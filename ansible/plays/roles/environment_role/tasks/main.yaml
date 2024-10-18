@@ -1,10 +1,10 @@
 ---
 - name: Installing Packages
   ansible.builtin.apt:
-    pkg:
-      - qemu-guest-agent
+    pkg: '{{ item }}'
     state: present
     update-cache: true
+  loop: '{{ apt_packages }}'
 
 - name: Setting Hostname
   ansible.builtin.hostname:

@@ -3,3 +3,9 @@ runner_arch: linux-x64
 runner_version: 2.320.0
 actions_join_token: ""
 actions_repo_url: ""
+
+apt_repositories:
+  - terraform:
+      gpg_url: https://apt.releases.hashicorp.com/gpg
+      gpg_store_location: /usr/share/keyrings/hashicorp-archive-keyring.gpg
+      repo: https://apt.releases.hashicorp.com

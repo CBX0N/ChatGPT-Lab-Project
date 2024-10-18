@@ -20,3 +20,7 @@ ssh_authorized_keys:
   - files/public_keys/cbxon.pub
   - files/public_keys/github.pub
   - files/public_keys/pve.pub
+apt_packages:
+  - gnupg
+  - software-properties-common
+  - qemu-guest-agent

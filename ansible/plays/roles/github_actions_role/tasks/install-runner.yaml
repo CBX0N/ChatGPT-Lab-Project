@@ -1,3 +1,4 @@
+---
 - name: Create directory for Actions runner
   ansible.builtin.file:
     path: /opt/actions-runner
