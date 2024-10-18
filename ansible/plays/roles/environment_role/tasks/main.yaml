@@ -10,13 +10,22 @@
   ansible.builtin.hostname:
     name: "{{ inventory_hostname }}"
 
-- name: Set SSH Authorized Keys
+# - name: Set SSH Authorized Keys
+#   ansible.posix.authorized_key:
+#     state: present
+#     user: '{{ ansible_user }}'
+#     key: '{{ item }}'
+#   with_File:
+#     - '{{ ssh_authorized_keys }}'
+
+- name: Set up multiple authorized keys
   ansible.posix.authorized_key:
+    user: ansible
     state: present
-    user: '{{ ansible_user }}'
     key: '{{ item }}'
-  with_File:
-    - '{{ ssh_authorized_keys }}'
+  with_file:
+    - files/public_keys/cbxon.pub
+    - files/public_keys/github.pub
 
 - name: Create SSH Private Key
   ansible.builtin.copy:
