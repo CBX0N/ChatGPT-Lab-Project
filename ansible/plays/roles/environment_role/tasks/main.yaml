@@ -10,17 +10,9 @@
   ansible.builtin.hostname:
     name: "{{ inventory_hostname }}"
 
-# - name: Set SSH Authorized Keys
-#   ansible.posix.authorized_key:
-#     state: present
-#     user: '{{ ansible_user }}'
-#     key: '{{ item }}'
-#   with_File:
-#     - '{{ ssh_authorized_keys }}'
-
-- name: Set up multiple authorized keys
+- name: Set SSH Authorized Keys
   ansible.posix.authorized_key:
-    user: ansible
+    user: '{{ ansible_user }}'
     state: present
     key: '{{ item }}'
   with_file: '{{ ssh_authorized_keys }}'
