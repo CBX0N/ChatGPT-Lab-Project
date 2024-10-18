@@ -1,6 +1,6 @@
 ---
 - name: Configure Github Actions runners
-  hosts: K3S
+  hosts: all
   become: true
   remote_user: ansible
   gather_facts: false
