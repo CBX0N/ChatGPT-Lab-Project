@@ -4,3 +4,4 @@
 
 - name: Configure Github Actions runner
   ansible.builtin.include_tasks: configure-runner.yaml
+  run_once: true

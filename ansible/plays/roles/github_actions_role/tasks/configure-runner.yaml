@@ -5,7 +5,6 @@
     cmd: "./config.sh --url {{ actions_repo_url }} --token {{ actions_join_token }} --unattended"
   become: false
   
-
 - name: Setup Service
   ansible.builtin.shell:
     directory: /opt/actions-runner
