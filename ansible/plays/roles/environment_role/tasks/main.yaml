@@ -24,8 +24,7 @@
     state: present
     key: '{{ item }}'
   with_file:
-    - files/public_keys/cbxon.pub
-    - files/public_keys/github.pub
+    - '{{ ssh_authorized_keys }}'
 
 - name: Create SSH Private Key
   ansible.builtin.copy:
