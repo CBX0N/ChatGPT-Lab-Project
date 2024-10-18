@@ -2,6 +2,7 @@
 - name: Configure runner
   ansible.builtin.shell:
     cmd: "/opt/actions-runner/config.sh --url {{ actions_repo_url }} --token {{ actions_join_token }}"
+  become: false
 
 - name: Setup Service
   ansible.builtin.shell:
