@@ -15,3 +15,8 @@ ansible_become_password: !vault |
           3034336235373632370a363561653438313230663563323366633266633733313737613339313934
           3463
 
+create_ssh_private_key: false
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIES3MWtrYdJGdRLvp6oKl3SWHYGGcR725ZaZmu2+kcWx cbxon@lap
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDMJvrddIRBp6UWEim5D6jCPegLHwh+doe7c744GA7v/ github@ghb-01
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjX0kDFSxu41RfqJOytpKePct4PrWpwvKkjbEMvhbTV root@pve
