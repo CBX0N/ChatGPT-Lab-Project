@@ -10,4 +10,4 @@
       ansible.builtin.apt_repository:
         repo: "deb [arch=amd64 signed-by={{ item.gpg_store_location }}] {{ item.repo }} {{ ansible_distribution_release }} main"
         state: present
-  loop: '{{ apt_repositories }}'
+  with_items: '{{ apt_repositories }}'
