@@ -1,14 +1,13 @@
----
 - name: Configuring APT repositories
   block:
-    - name: Adding apt key
-      ansible.builtin.get_url:
-        url: '{{ item.gpg_url }}'
-        dest: '{{ item.gpg_store_location }}'
-      with_items: '{{ apt_repositories }}'
+  - name: Adding apt key
+    ansible.builtin.get_url:
+      url: '{{ item.gpg_url }}'
+      dest: '{{ item.gpg_store_location }}'
+    with_items: '{{ apt_repositories }}'
 
-    - name: Adding apt source
-      ansible.builtin.apt_repository:
-        repo: "deb [arch=amd64 signed-by={{ item.gpg_store_location }}] {{ item.repo }} {{ ubuntu_version }} main"
-        state: present
-      with_items: '{{ apt_repositories }}'
+  - name: Adding apt source
+    ansible.builtin.apt_repository:
+      repo: "deb [arch=amd64 signed-by={{ item.gpg_store_location }}] {{ item.repo }} {{ ubuntu_version }} main"
+      state: present
+    with_items: '{{ apt_repositories }}'
