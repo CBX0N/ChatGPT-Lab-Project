@@ -13,10 +13,10 @@
 - name: Set SSH Authorized Keys
   ansible.posix.authorized_key:
     state: present
-    user: "{{ ansible_user }}"
-    key: "{{ lookup('file', 'files/public_keys/{{ item }}') }}"
-  loop:
-    - "{{ ssh_authorized_keys }}"
+    user: '{{ ansible_user }}'
+    key: '{{ item }}'
+  withFile:
+    - "files/public_keys/{{ ssh_authorized_keys }}"
 
 - name: Create SSH Private Key
   ansible.builtin.copy:
