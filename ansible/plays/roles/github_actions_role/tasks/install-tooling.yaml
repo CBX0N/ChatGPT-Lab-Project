@@ -1,16 +1,14 @@
 ---
-# - name: Configure APT repositories
-#   block:
-#     - name: somerepo | no apt key
-#       ansible.builtin.get_url:
-#         url: '{{ item.gpg_url }}'
-#         dest: '{{ item.gpg_store_location }}'
-#       with_items: '{{ apt_repositories }}'
+- name: Configure APT repositories
+  block:
+    - name: somerepo | no apt key
+      ansible.builtin.get_url:
+        url: '{{ item.gpg_url }}'
+        dest: '{{ item.gpg_store_location }}'
+      with_items: '{{ apt_repositories }}'
 
-#     - name: somerepo | apt source
-#       ansible.builtin.apt_repository:
-#         repo: "deb [arch=amd64 signed-by={{ item.gpg_store_location }}] {{ item.repo }} {{ ansible_distribution_release }} main"
-#         state: present
-#       with_items: '{{ apt_repositories }}'
-
-- debug: '{{ apt_repositories }}'
+    - name: somerepo | apt source
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by={{ item.gpg_store_location }}] {{ item.repo }} {{ ansible_distribution_release }} main"
+        state: present
+      with_items: '{{ apt_repositories }}'
