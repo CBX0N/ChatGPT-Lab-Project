@@ -15,6 +15,8 @@ ansible_become_password: !vault |
           3034336235373632370a363561653438313230663563323366633266633733313737613339313934
           3463
 
+ubuntu_version: noble
+
 create_ssh_private_key: false
 ssh_authorized_keys:
   - files/public_keys/cbxon.pub
