@@ -26,3 +26,4 @@ apt_packages:
   - gnupg
   - software-properties-common
   - qemu-guest-agent
+  - apt-transport-https
