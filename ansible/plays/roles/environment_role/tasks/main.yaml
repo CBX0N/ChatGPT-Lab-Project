@@ -19,7 +19,7 @@
 
 - name: Create SSH Private Key
   ansible.builtin.copy:
-    dest: ~/.ssh/id_ed25519
+    dest: /home/github/.ssh/id_ed25519
     content: "{{ ssh_private_key }}"
     mode: "0600"
   when: create_ssh_private_key == true
