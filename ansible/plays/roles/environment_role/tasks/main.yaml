@@ -15,8 +15,7 @@
     state: present
     user: '{{ ansible_user }}'
     key: '{{ item }}'
-  withFile:
-    - "{{ ssh_authorized_keys }}"
+  withFile: "{{ ssh_authorized_keys }}"
 
 - name: Create SSH Private Key
   ansible.builtin.copy:
