@@ -13,7 +13,7 @@
 - name: Set SSH Authorized Keys
   ansible.posix.authorized_key:
     state: present
-    user: "{{ inventory_user }}"
+    user: "{{ ansible_user }}"
     key: "{{ item }}"
   loop:
     - "{{ ssh_authorized_keys }}"
