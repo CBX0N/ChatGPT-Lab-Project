@@ -31,3 +31,4 @@ additional_apt_packages:
   - packer
   - ansible
   - git
+  - helm
