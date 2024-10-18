@@ -1,12 +1,5 @@
 - name: Configuring APT repositories
   block:
-  # - name: Adding apt key
-  #   ansible.builtin.get_url:
-  #     url: '{{ item.gpg_url }}'
-  #     dest: '{{ item.gpg_store_location }}'
-  #     state: absent
-  #   with_items: '{{ apt_repositories }}'
-
   - name: Add an Apt signing key, uses whichever key is at the URL
     ansible.builtin.apt_key:
       url: '{{ item.gpg_url }}'
