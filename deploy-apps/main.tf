@@ -10,14 +10,13 @@ resource "helm_release" "argocd" {
     name  = "configs.secret.argocdServerAdminPassword"
     value = var.argocd_server_admin_password
   }
-#   set {
-#     name = "server.service.type"
-#     value = "LoadBalancer"
-#   }
-
   set {
-    name = jsonencode("configs.params.\"server.insecure\"")
+    name = "server.ingress.enabled"
     value = "true"
+  }
+  set {
+    name = "server.extraArgs"
+    value = "insecure"
   }
 }
 
