@@ -13,10 +13,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "2.33.0"
     }
-    argocd = {
-      source  = "argoproj-labs/argocd"
-      version = "7.0.3"
-    }
+    # argocd = {
+    #   source  = "argoproj-labs/argocd"
+    #   version = "7.0.3"
+    # }
   }
 }
 
@@ -26,12 +26,12 @@ provider "helm" {
   }
 }
 
-provider "kubernetes" {
-  config_path = "~/.kube/config"
-}
+# provider "kubernetes" {
+#   config_path = "~/.kube/config"
+# }
 
-provider "argocd" {
-    server_addr = var.argocd_url
-    username = "admin"
-    password = var.argocd_server_admin_password
-}
+# provider "argocd" {
+#     server_addr = var.argocd_url
+#     username = "admin"
+#     password = var.argocd_server_admin_password
+# }

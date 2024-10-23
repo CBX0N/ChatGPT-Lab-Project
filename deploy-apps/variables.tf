@@ -3,5 +3,5 @@ variable "argocd_server_admin_password" {
   sensitive = true
 }
 variable "argocd_url" {
-  
+  type = string
 }

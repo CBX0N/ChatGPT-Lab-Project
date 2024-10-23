@@ -1,3 +1,29 @@
+resource "helm_release" "metallb" {
+  name             = "metallb"
+  chart            = "metallb"
+  repository       = "https://metallb.github.io/metallb"
+  create_namespace = true
+  cleanup_on_fail  = true
+}
+
+resource "helm_release" "ingress-nginx" {
+  name             = "ingress-nginx"
+  chart            = "ingress-nginx"
+  repository       = "https://kubernetes.github.io/ingress-nginx"
+  create_namespace = true
+  cleanup_on_fail  = true
+  version          = "4.11.3"
+}
+
+resource "helm_release" "longhorn" {
+  name             = "longhorn"
+  chart            = "longhorn"
+  repository       = "https://charts.longhorn.io"
+  create_namespace = true
+  cleanup_on_fail  = true
+  version          = "1.7.2"
+}
+
 resource "helm_release" "argocd" {
   name             = "argo-cd"
   chart            = "argo-cd"
@@ -14,15 +40,5 @@ resource "helm_release" "argocd" {
     name = "server.ingress.enabled"
     value = "true"
   }
-  set {
-    name = "server.extraArgs"
-    value = "insecure"
-  }
 }
 
-# resource "argocd_account_token" "foo" {
-#   depends_on = [ helm_release.argocd ]
-#   account      = "foo"
-#   expires_in   = "168h" # expire in 7 days
-#   renew_before = "84h"  # renew when less than 3.5 days remain until expiry
-# }
