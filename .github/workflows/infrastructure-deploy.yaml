@@ -30,6 +30,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - run: ansible-vault decrypt secrets.terraform.auto.tfvars
+            - run: cat "TF_TOKEN_app_terraform_io" > ~/.terraform.d/credentials.tfrc.json
             - run: terraform init
             - run: |
                 set +e
