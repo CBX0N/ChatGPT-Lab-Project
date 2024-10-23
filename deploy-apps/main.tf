@@ -7,8 +7,8 @@ resource "helm_release" "argocd" {
   version          = "7.6.12"
 
   set {
-    name  = "secret.argocdServerAdminPassword"
-    value = "password"
+    name  = "configs.secret.argocdServerAdminPassword"
+    value = "$2a$10$dQlb1epH4xIDue7b08Qqnuyy5dLoSKOwwVRxpS0xAtpifbNGIOgSW"
   }
 }
 
