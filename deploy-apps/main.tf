@@ -10,10 +10,10 @@ resource "helm_release" "argocd" {
     name  = "configs.secret.argocdServerAdminPassword"
     value = var.argocd_server_admin_password
   }
-  set {
-    name = "server.service.type"
-    value = "LoadBalancer"
-  }
+#   set {
+#     name = "server.service.type"
+#     value = "LoadBalancer"
+#   }
 
   set {
     name = jsonencode("configs.params.\"server.insecure\"")
@@ -21,9 +21,9 @@ resource "helm_release" "argocd" {
   }
 }
 
-resource "argocd_account_token" "foo" {
-  depends_on = [ helm_release.argocd ]
-  account      = "foo"
-  expires_in   = "168h" # expire in 7 days
-  renew_before = "84h"  # renew when less than 3.5 days remain until expiry
-}
+# resource "argocd_account_token" "foo" {
+#   depends_on = [ helm_release.argocd ]
+#   account      = "foo"
+#   expires_in   = "168h" # expire in 7 days
+#   renew_before = "84h"  # renew when less than 3.5 days remain until expiry
+# }
