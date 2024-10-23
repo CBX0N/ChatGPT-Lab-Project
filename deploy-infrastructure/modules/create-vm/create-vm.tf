@@ -10,8 +10,8 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
   balloon     = var.vm_config.balloon
   os_type     = var.vm_config.os_type
 
-  cicustom    = var.vm_config.use_cloud_config == true ? var.vm_config.cloud_config_path : null
-  
+  cicustom = var.vm_config.use_cloud_config == true ? var.vm_config.cloud_config_path : null
+
   ipconfig0 = var.vm_config.ipconfig
   network {
     model  = var.vm_config.nic

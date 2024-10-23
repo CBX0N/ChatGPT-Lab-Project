@@ -1,10 +1,10 @@
 terraform {
-  cloud { 
-    organization = "cbxon" 
-    workspaces { 
+  cloud {
+    organization = "cbxon"
+    workspaces {
       name = "chatgpt"
-    } 
-  } 
+    }
+  }
   required_providers {
     proxmox = {
       source  = "Telmate/proxmox"
