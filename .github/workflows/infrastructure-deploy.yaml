@@ -27,12 +27,12 @@ jobs:
         needs: [ configure-runner ]
         outputs:
             tfplan: ${{ steps.tfplan.outputs.exitcode }}
+        env:
+            TF_TOKEN_app_terraform_io: ${{ secrets.HCP_TOKEN }}
         steps:
             - uses: actions/checkout@v4
             - run: ansible-vault decrypt secrets.terraform.auto.tfvars
-            - run: |
-                export TF_TOKEN_app_terraform_io=${{ secrets.HCP_TOKEN }}
-                terraform init
+            - run: terraform init
             - run: |
                 set +e
                 terraform plan -detailed-exitcode
