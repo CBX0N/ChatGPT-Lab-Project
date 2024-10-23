@@ -16,7 +16,7 @@ resource "helm_release" "argocd" {
   }
 
   set {
-    name = "configs.params.\"server.insecure\""
+    name = jsonencode("configs.params.\"server.insecure\"")
     value = "true"
   }
 }
