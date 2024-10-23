@@ -1,7 +1,5 @@
-name: Deploy Infrastructure
+name: Destroy Infrastructure
 on:
-    push:
-        branches: [main]
     workflow_dispatch: 
 
 jobs:
@@ -21,45 +19,17 @@ jobs:
                 git config --global user.name "Actions Runner"
                 echo "${{ secrets.ANSIBLE_VAULT }}" > ~/.ansible/cbxon-vault.pass
 
-    terraform-plan:
-        name: Terraform Plan
+    terraform-destroy:
+        name: Terraform Destroy
         runs-on: self-hosted
         needs: [ configure-runner ]
-        outputs:
-            tfplan: ${{ steps.tfplan.outputs.exitcode }}
         env:
             TF_TOKEN_app_terraform_io: ${{ secrets.HCP_TOKEN }}
         steps:
             - uses: actions/checkout@v4
             - run: ansible-vault decrypt secrets.terraform.auto.tfvars
             - run: terraform init
-            - run: |
-                set +e
-                terraform plan -detailed-exitcode
-                echo "exitcode=$?" >> "$GITHUB_OUTPUT"
-              id: tfplan
-              continue-on-error: true
-
-    terraform-deploy:
-        name: Deploy Terraform
-        runs-on: self-hosted
-        needs: [ terraform-plan ]
-        env:
-            TF_TOKEN_app_terraform_io: ${{ secrets.HCP_TOKEN }}
-            tfplan: ${{ needs.terraform-plan.outputs.tfplan}}
-        steps:
-            - if: env.tfplan == 2
-              run: |
-                terraform apply --auto-approve
-
-    ansible-run:
-        name: Ansible Run
-        runs-on: self-hosted
-        needs: [ terraform-deploy ]
-        steps:
-            - run: ansible-playbook -i inventory/hosts playbook-k3s-cluster.yaml
-              working-directory: ansible/plays
-            - run: sed -i 's/127.0.0.1/192.168.0.211/' ~/.kube/config
+            - run: terraform destroy --auto-approve
 
 defaults:
     run:

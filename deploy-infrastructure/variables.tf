@@ -16,7 +16,7 @@ variable "vm_config" {
     disk_location      = optional(string, "datastore1")
     cloudinit_location = optional(string, "local-lvm")
     use_cloud_config   = optional(bool, false)
-    cloud_config_path  = optional(string,"user=local:snippets/user_data_basic.yaml")
+    cloud_config_path  = optional(string, "user=local:snippets/user_data_basic.yaml")
   }))
 }
 
