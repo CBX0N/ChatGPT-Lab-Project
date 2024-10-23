@@ -11,3 +11,9 @@ resource "helm_release" "argocd" {
     value = var.argocd_server_admin_password
   }
 }
+
+resource "argocd_account_token" "foo" {
+  account      = "foo"
+  expires_in   = "168h" # expire in 7 days
+  renew_before = "84h"  # renew when less than 3.5 days remain until expiry
+}
