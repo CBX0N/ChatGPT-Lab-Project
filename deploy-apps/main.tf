@@ -5,4 +5,10 @@ resource "helm_release" "argocd" {
   create_namespace = true
   cleanup_on_fail  = true
   version          = "7.6.12"
+
+  set {
+    name  = "argocdServerAdminPassword"
+    value = "test123"
+  }
 }
+
