@@ -30,17 +30,14 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - run: ansible-vault decrypt secrets.terraform.auto.tfvars
-            - run: |
-                echo '{"credentials":{"app.terraform.io":{"token":"${{ secrets.HCP_TOKEN }}"}}}' > ~/.terraform.d/credentials.tfrc.json
-                terraform login
             - run: terraform init
+              env:
+                TF_TOKEN_app_terraform_io: ${{ secrets.HCP_TOKEN }}
             - run: |
                 set +e
                 terraform plan -detailed-exitcode
                 echo "exitcode=$?" >> "$GITHUB_OUTPUT"
               id: tfplan
-              env:
-                TF_TOKEN_app_terraform_io: ${{ secrets.HCP_TOKEN }}
               continue-on-error: true
 
     terraform-deploy:
