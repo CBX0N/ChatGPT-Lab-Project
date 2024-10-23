@@ -1,4 +1,29 @@
 ---
+- name: Installing Packages
+  ansible.builtin.apt:
+    pkg:
+      - containerd
+      - unzip
+      - nfs-common
+    state: present
+    update-cache: true
+
+- name: Make Directory
+  ansible.builtin.file:
+    path: /opt/cni/bin
+    state: directory
+
+- name: Download CNI-Plugins
+  ansible.builtin.get_url:
+    url: https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz
+    dest: /tmp/cni-plugins-linux-amd64-v1.5.1.tgz
+
+- name: Extract cni-plugins-linux-amd64-v1.5.1.tgz to /opt/cni/bin
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: /tmp/cni-plugins-linux-amd64-v1.5.1.tgz
+    dest: /opt/cni/bin
+
 - name: Make Directory
   ansible.builtin.file:
     path: /var/lib/rancher/k3s/agent/images/

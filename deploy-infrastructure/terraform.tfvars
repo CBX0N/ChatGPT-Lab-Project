@@ -3,6 +3,7 @@ vm_config = {
     name = "k3s01"
     vmid = 211
     memory = 4096
+    balloon = 4096
     cores = 2
     use_cloud_config = true
     clone = "ubuntu-noble-template"
@@ -13,6 +14,7 @@ vm_config = {
     name = "k3s02"
     vmid = 212
     memory = 4096
+    balloon = 4096
     cores = 2
     use_cloud_config = true
     clone = "ubuntu-noble-template"
@@ -23,30 +25,11 @@ vm_config = {
     name = "k3s03"
     vmid = 213
     memory = 4096
+    balloon = 4096
     cores = 2
     use_cloud_config = true
     clone = "ubuntu-noble-template"
     disk_gb = 40
     ipconfig = "ip=192.168.0.213/24,gw=192.168.0.1"
-  },
-  "k3s04" = {
-    name = "k3s04"
-    vmid = 214
-    memory = 4096
-    cores = 2
-    use_cloud_config = true
-    clone = "ubuntu-noble-template"
-    disk_gb = 40
-    ipconfig = "ip=192.168.0.214/24,gw=192.168.0.1"
-  },
-  "k3s05" = {
-    name = "k3s05"
-    vmid = 215
-    memory = 4096
-    cores = 2
-    use_cloud_config = true
-    clone = "ubuntu-noble-template"
-    disk_gb = 40
-    ipconfig = "ip=192.168.0.215/24,gw=192.168.0.1"
   },
 }
