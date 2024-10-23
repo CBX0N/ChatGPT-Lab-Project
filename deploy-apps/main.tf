@@ -8,7 +8,7 @@ resource "helm_release" "argocd" {
 
   set {
     name  = "argocdServerAdminPassword"
-    value = "test123"
+    value = "y0Pom7GeppeeevKUh6l5mN1L/E9mh05vkrZoNAZwFy"
   }
 }
 
