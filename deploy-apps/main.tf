@@ -10,6 +10,10 @@ resource "helm_release" "argocd" {
     name  = "configs.secret.argocdServerAdminPassword"
     value = var.argocd_server_admin_password
   }
+  set {
+    name = "server.service.type"
+    value = "LoadBalancer"
+  }
 }
 
 resource "argocd_account_token" "foo" {
