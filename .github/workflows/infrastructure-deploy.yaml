@@ -31,10 +31,8 @@ jobs:
             - uses: actions/checkout@v4
             - run: ansible-vault decrypt secrets.terraform.auto.tfvars
             - run: |
-                echo '{"credentials":{"app.terraform.io":{"token":"${(printenv TF_TOKEN_app_terraform_io)"}}}' > ~/.terraform.d/credentials.tfrc.json
+                echo '{"credentials":{"app.terraform.io":{"token":"${{ secrets.HCP_TOKEN }}"}}}' > ~/.terraform.d/credentials.tfrc.json
                 terraform login
-              env:
-                TF_TOKEN_app_terraform_io: ${{ secrets.HCP_TOKEN }}
             - run: terraform init
             - run: |
                 set +e
