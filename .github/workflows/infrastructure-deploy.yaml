@@ -30,9 +30,9 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - run: ansible-vault decrypt secrets.terraform.auto.tfvars
-            - run: terraform init
-              env:
-                TF_TOKEN_app_terraform_io: ${{ secrets.HCP_TOKEN }}
+            - run: |
+                export TF_TOKEN_app_terraform_io=${{ secrets.HCP_TOKEN }}
+                terraform init
             - run: |
                 set +e
                 terraform plan -detailed-exitcode
