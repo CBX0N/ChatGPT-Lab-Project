@@ -14,6 +14,11 @@ resource "helm_release" "argocd" {
     name = "server.service.type"
     value = "LoadBalancer"
   }
+
+  set {
+    name = "server.insecure"
+    value = "true"
+  }
 }
 
 resource "argocd_account_token" "foo" {

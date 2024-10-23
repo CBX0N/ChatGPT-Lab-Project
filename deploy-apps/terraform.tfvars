@@ -1,1 +1,1 @@
-argocd_url = "argo-cd-argocd-server.default.svc.cluster.local"
+argocd_url = "192.168.0.211:"
