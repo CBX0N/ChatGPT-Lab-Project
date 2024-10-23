@@ -31,5 +31,7 @@ provider "kubernetes" {
 }
 
 provider "argocd" {
-
+    server_addr = var.argocd_url
+    username = "admin"
+    password = var.argocd_server_admin_password
 }
